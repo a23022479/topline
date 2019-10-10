@@ -91,6 +91,10 @@ export default {
         method: 'POST',
         data: this.form
       }).then(res => {
+        // 获取用户信息
+        let userInfo = res.data.data
+        // 登录成功后保存用户信息到localStorage
+        window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
         this.$message({
           message: '登录成功',
           type: 'success'
