@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   data () {
     return {
@@ -86,20 +86,21 @@ export default {
       // 显示加载状态
       this.loading = true
       // 发送请求到服务器
-      axios({
-        url: 'http://ttapi.research.itcast.cn/mp/v1_0/authorizations',
+      this.$http({
+        url: '/authorizations',
         method: 'POST',
         data: this.form
       }).then(res => {
         // 获取用户信息
-        let userInfo = res.data.data
+        console.log(res)
+        let userInfo = res
         // 登录成功后保存用户信息到localStorage
         window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
         this.$message({
           message: '登录成功',
           type: 'success'
         })
-        // 加载状态改为false
+        // 登录成功后,加载状态改为false
         this.loading = false
         this.$router.push('/')
       }).catch(err => {
@@ -108,6 +109,7 @@ export default {
           message: '手机号或者验证码错误',
           type: 'error'
         })
+        // 登录失败后弹出提示,将加载状态改为false
         this.loading = false
       })
     },

@@ -12,21 +12,21 @@
       :unique-opened="true"
       :router="true"
       >
-      <el-menu-item index="/home">
+      <el-menu-item index="/home" class="border">
         <!-- <i class="el-icon-menu"></i> -->
         <span slot="title">首页</span>
       </el-menu-item>
-      <el-submenu index="2">
+      <el-submenu index="2" class="border">
         <template slot="title">
           <!-- <i class="el-icon-location"></i> -->
           <span>内容管理</span>
         </template>
           <el-menu-item index="2-1">发布文章</el-menu-item>
-          <el-menu-item index="2-2">内容列表</el-menu-item>
+          <el-menu-item index="/article/list">内容列表</el-menu-item>
           <el-menu-item index="2-3">评论列表</el-menu-item>
           <el-menu-item index="2-4">素材管理</el-menu-item>
       </el-submenu>
-      <el-submenu index="3">
+      <el-submenu index="3" class="border">
         <!-- <i class="el-icon-document"></i> -->
         <template slot="title">
           <span>粉丝管理</span>
@@ -36,7 +36,7 @@
           <el-menu-item index="3-3">粉丝画像</el-menu-item>
           <el-menu-item index="3-4">粉丝列表</el-menu-item>
       </el-submenu>
-      <el-menu-item index="4">
+      <el-menu-item index="4" class="border">
         <!-- <i class="el-icon-setting"></i> -->
         <span slot="title">帐户信息</span>
       </el-menu-item>
@@ -60,5 +60,8 @@ export default {
     img {
         width: 120px;
     }
+}
+.border{
+  width: 200px;
 }
 </style>
