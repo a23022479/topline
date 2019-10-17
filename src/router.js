@@ -9,6 +9,11 @@ import Login from '@/views/login'
 import Home from '@/views/home'
 import Layout from '@/views/layout'
 import List from '@/views/article/list'
+import Publish from '@/views/article/publish'
+import Comment from '@/views/comment'
+import Material from '@/views/material/index.vue'
+import User from '@/views/user'
+import DataImg from '@/views/fans/dataimg'
 
 // 解决vue-router版本问题
 const originalPush = Router.prototype.push
@@ -35,7 +40,13 @@ let router = new Router({
       component: Layout,
       children: [
         { path: '/home', component: Home },
-        { path: '/article/list', component: List }
+        { path: '/article/list', component: List },
+        { path: '/article/publish', component: Publish },
+        { path: '/article/edit/:id', component: Publish },
+        { path: '/comment', component: Comment },
+        { path: '/material', component: Material },
+        { path: '/user', component: User },
+        { path: '/fans/dataimg', component: DataImg }
       ]
     }
   ]

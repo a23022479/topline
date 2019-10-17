@@ -11,7 +11,7 @@
                 <el-dropdown>
                     <span class="el-dropdown-link userinfo" >
                         <img :src="userInfo.photo" alt="" class="icon">
-                        <span class="name">{{userInfo.name}}</span>
+                        <span class="name">{{$store.state.userInfo.name}}</span>
                        <i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
@@ -33,7 +33,7 @@ export default {
     }
   },
   created () {
-    this.userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+    this.userInfo = this.$store.state.userInfo
   }
 }
 </script>

@@ -95,7 +95,10 @@ export default {
         console.log(res)
         let userInfo = res
         // 登录成功后保存用户信息到localStorage
-        window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
+        // window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
+        // 用户登录时,将用户信息存到Vuex
+        // setUser方法会更新localstorage,将用户信息显示出来
+        this.$store.commit('setUser', userInfo)
         this.$message({
           message: '登录成功',
           type: 'success'

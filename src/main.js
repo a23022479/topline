@@ -9,8 +9,16 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // 全局样式
 import '@/styles/index.less'
+// 导入json-bigint
+import JSONBig from 'json-bigint'
 // 导入axios
 import axios from 'axios'
+// 导入富文本编辑框的文件
+import VueQuillEditor from 'vue-quill-editor'
+// 导入富文本编辑框的样式
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 // 给axios设置基准地址
 axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0'
 // 将axios挂载到Vue的原型上,通过this.$http使用
@@ -19,8 +27,23 @@ Vue.prototype.$http = axios
 Vue.config.productionTip = false
 // 使用element-ui
 Vue.use(ElementUI)
+// 使用
+Vue.use(VueQuillEditor)
 
-// 设置请求拦截器
+// 对服务器响应的axios数据进行json-bigint处理
+axios.defaults.transformResponse = [
+  function (data) {
+    try {
+      // 进行转换,接口返回空,无法转换,报错
+      return JSONBig.parse(data)
+    } catch (err) {
+      console.log(err)
+      return data
+    }
+  }
+]
+
+// 设置请求拦截器  发生axios请求时自动给 请求头 加上token
 axios.interceptors.request.use(
   function (config) {
     // 请求正常时执行的逻辑
